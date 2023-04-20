@@ -17,14 +17,11 @@ const images = [
 
 const galleryOfImages = document.querySelector(".gallery");
 
-images.forEach((image) => {
-  const template = `<li><img src="${image.url}" alt="${image.alt}"></li>`;
+const template = images.reduce((acc, currentImage) => {
+  return (
+    acc +
+    `<li><img src="${currentImage.url}" alt="${currentImage.alt}" class="image"></li>`
+  );
+}, "");
 
-  galleryOfImages.insertAdjacentHTML("beforeend", template);
-});
-
-const imageElement = document.querySelectorAll("img");
-
-imageElement.forEach((element) => {
-  element.classList.add("image");
-});
+galleryOfImages.insertAdjacentHTML("beforeend", template);
